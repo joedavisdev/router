@@ -47,7 +47,7 @@ Let's start with the contents of `index.html`:
   <base href="/">
   <title>My app</title>
 </head>
-<body ng-app="myApp" ng-controller="AppController as app">
+<body ng-app="app" ng-controller="AppController as app">
   <div ng-outlet></div>
 
   <script src="/node_modules/angular/angular.js"></script>
@@ -67,9 +67,9 @@ So how do we configure the app? Let's open `app.js` and find out. Add this to th
 angular.module('app', ['ngNewRouter'])
   .controller('AppController', ['$router', AppController]);
 
-AppController.$routeConfig([
+AppController.$routeConfig = [
   {path: '/', component: 'home' }
-]);
+];
 function AppController ($router) {}
 ```
 
@@ -159,7 +159,7 @@ We can link to our `detail` component using the `ng-link` directive.
 Add this to `index.html`:
 
 ```html
-<body ng-app="myApp" ng-controller="AppController as app">
+<body ng-app="app" ng-controller="AppController as app">
   <a ng-link="detail({id: 5})">link to detail</a>
   ...
 ```
